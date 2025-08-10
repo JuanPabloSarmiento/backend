@@ -1,4 +1,5 @@
-import { Entity,PrimaryGeneratedColumn,Column } from "typeorm";
+import { Animal } from "src/animales/animal.entity";
+import { Entity,PrimaryGeneratedColumn,Column, OneToMany } from "typeorm";
 
 @Entity()
 export class Usuario{
@@ -12,11 +13,12 @@ export class Usuario{
     @Column()
     telefono: number;
 
-    @Column()
+    @Column({unique:true})
     correo: string;
 
     @Column()
     contrasena: string;
 
-
+   @OneToMany(()=> Animal,animal => animal.usuario)
+   animal:Animal[]
 }

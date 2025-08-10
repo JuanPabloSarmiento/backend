@@ -18,6 +18,11 @@ export class AnimalesController {
     return this.animalesService.findOne(+id);
   }
 
+   @Get('usuario/:id')
+  buscarPorUsuario(@Param('id') id: number) {
+    return this.animalesService.buscarPorUsuario(id);
+  }
+
   // POST /animales
   @Post()
   create(@Body() animal: Animal): Promise<Animal> {

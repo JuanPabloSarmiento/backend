@@ -1,7 +1,8 @@
+import { Animal } from 'src/animales/animal.entity';
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { Animal } from './animal.entity';
+
 
 @Injectable()
 export class AnimalesService {
@@ -25,4 +26,11 @@ export class AnimalesService {
   async remove(id: number): Promise<void> {
     await this.animalRepository.delete({ id_animal: id });
   }
+
+   async buscarPorUsuario(id_usuario: number): Promise<Animal[]> {
+    return this.animalRepository.find({
+      where: { usuario: { id_usuario } },
+    });
+  }
+
 }
